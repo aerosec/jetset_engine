@@ -1,0 +1,7 @@
+setup.py
+angr_platforms/__init__.py
+angr_platforms.egg-info/PKG-INFO
+angr_platforms.egg-info/SOURCES.txt
+angr_platforms.egg-info/dependency_links.txt
+angr_platforms.egg-info/requires.txt
+angr_platforms.egg-info/top_level.txt
