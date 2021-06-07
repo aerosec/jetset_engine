@@ -5,8 +5,8 @@ import cle
 '''
 
 0xA000 0000 - 0xA000 0FFF = FSMC control register
-0x4000 0000 - 0x4007 FFFF = bunch of mmio
-0x5000 0000 - 0x5006 0BFF = more mmio junk
+0x4000 0000 - 0x4007 FFFF = mmio
+0x5000 0000 - 0x5006 0BFF = mmio
 
 '''
 

@@ -21,15 +21,6 @@ def get_project():
     This MLO binary then searches for a U-BOOT.BIN file which
     is in the root directory of the OS; this second stage bootloader
     will unpack the kernel
-
-    Seems like angr wants the binary at a bit of an offset, and
-    not directly loaded at 0x40200800.
-
-    Additionally, the entry point is a little strange. Loading the
-    MLO binary directly, the first portion of it is a direct jump to
-    a failure state which occurs after a probe of GPIO pin 5. So
-    we skip over this section and go to what seems to be the actual
-    entry point.
     '''
 
     MLO_path = "../jetset_public_data/beagle/kernel/MLO"
