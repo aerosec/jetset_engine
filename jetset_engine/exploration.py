@@ -44,9 +44,8 @@ class ExplorationManager(object):
         except timeout:
             #try exactly 1 once more to connect to VM
             print("Timeout: Trying 1 more time")
-            proc.kill()
-            os.system(f"pkill -9 {proc.pid}")
-            os.system(f"pkill -9 qemu")
+            # this for sure kills the process
+            os.system(f"pkill -9 qemu-system-arm")
             time.sleep(5)
             proc = subprocess.Popen(self.cmd)
             time.sleep(2)
@@ -63,8 +62,7 @@ class ExplorationManager(object):
             print("Got AvoidPointError")
         except HitPointError:
             print("Got HitPointError")
-        proc.kill()
-        os.system(f"pkill -9 {proc.pid}") # temporary measure
+        os.system(f"pkill -9 -P {proc.pid}")
         vm.post_analysis()
         logger.update_log()
         return vm
