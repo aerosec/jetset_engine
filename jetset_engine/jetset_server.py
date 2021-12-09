@@ -38,6 +38,8 @@ class JetSetServer(RemoteQemuVm):
             self.add_bp(0x08004491, BP_AVOID)
         if self.args.use_slicer:
             self.device.use_slicer = True
+        for a in self.avoid:
+            self.add_bp(a, BP_AVOID)
         print("Setup Complete!")
 
     def post_analysis(self):
