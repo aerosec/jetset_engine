@@ -1,3 +1,4 @@
+import configs.cmu_config as cmu
 import configs.beagle_config as beagle
 import configs.rpi_config as rpi
 import configs.stm32f4_config as stm32f4
@@ -13,6 +14,7 @@ import configs.steering_control_config as steering_control
 
 
 socs = {
+ 	"cmu" : cmu,
  	"rpi" : rpi,
  	"beagle" : beagle,
  	"stm32f4" : stm32f4,
@@ -40,6 +42,12 @@ def get_project(socname):
 def get_target(socname):
 	soc = get_soc(socname)
 	return soc.target
+
+def get_avoid(socname):
+	soc = get_soc(socname)
+	if getattr(soc, 'avoid'):
+		return soc.avoid
+	return []
 
 def get_regions(socname):
 	soc = get_soc(socname)

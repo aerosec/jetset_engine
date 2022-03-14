@@ -32,20 +32,27 @@ class ExplorationManager(object):
                     not_decision = (1 if decision == 0 else 0)
                     best = (loc_key, not_decision) 
         return best
+    
+    def kill_qemu(self):
+        os.system('kill -9 ' + 
+          # Find our QEMU but not the python server
+          '$(ps -aef | grep qemu | grep -v "python" | grep -v "grep" | ' +
+          # Grab the PID
+          'tr -s " " " " | cut -d" " -f2)')
 
 
     def run_one(self, decision_cache):
         try:
+            print(f'Running {self.cmd}')
             proc = subprocess.Popen(self.cmd)
-            time.sleep(2)
+            time.sleep(5)
             vm = self.vm_constructor(self.vm_args, decision_cache)
             print("preparing to connect")
             vm.connect()
         except timeout:
             #try exactly 1 once more to connect to VM
             print("Timeout: Trying 1 more time")
-            # this for sure kills the process
-            os.system(f"pkill -9 qemu-system-arm")
+            self.kill_qemu()
             time.sleep(5)
             proc = subprocess.Popen(self.cmd)
             time.sleep(2)
@@ -62,7 +69,7 @@ class ExplorationManager(object):
             print("Got AvoidPointError")
         except HitPointError:
             print("Got HitPointError")
-        os.system(f"pkill -9 -P {proc.pid}")
+        self.kill_qemu()
         vm.post_analysis()
         logger.update_log()
         return vm

@@ -23,8 +23,9 @@ import angr
 import cle
 
 target = 0x21e86ba9
+# potentially add avoid = [{list of avoid addrs}]
 arch = "x86"
-arch_num = 2
+arch_num = 3
 
 simple_synth_0 = Simmio(lower=0x21E80000,
                    upper=0x21E8B000,
@@ -60,4 +61,3 @@ Explanation of how to create this is in the readme of the jetset\_qemu repositor
 
 Some tips:
 - You may want to see what events are being communicated between the engine and qemu; for this, print out the msg variable in `jetset_engine/qmp_channel.py`
-- Points to avoid during symbolic exploration can be set in `jetset_server.py`

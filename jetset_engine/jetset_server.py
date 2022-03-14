@@ -19,7 +19,7 @@ class JetSetServer(RemoteQemuVm):
         super(JetSetServer, self).__init__(decision_cache)
         self.angr_project = socs.get_project(args.socname) 
         self.target = socs.get_target(args.socname) 
-        self.avoid = []
+        self.avoid = socs.get_avoid(args.socname) 
         self.arch = socs.get_arch(args.socname)
         self.arch_num = socs.get_arch_num(args.socname)
         self.auto_detect_loops = args.auto_detect_loops
