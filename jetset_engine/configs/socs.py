@@ -45,7 +45,7 @@ def get_target(socname):
 
 def get_avoid(socname):
 	soc = get_soc(socname)
-	if getattr(soc, 'avoid'):
+	if hasattr(soc, 'avoid'):
 		return soc.avoid
 	return []
 
