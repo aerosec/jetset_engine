@@ -52,7 +52,7 @@ class JetSetServer(RemoteQemuVm):
 
 def main():
     args = get_args()
-    cmd = ["xterm", "-e", f"{args.cmdfile}", f"{args.port}"]
+    cmd = [f"{args.cmdfile}", f"{args.port}"]
     exploration_manager = ExplorationManager(JetSetServer, args, cmd)
     exploration_manager.run()
     print("Done")
