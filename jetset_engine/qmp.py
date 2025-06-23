@@ -308,7 +308,7 @@ class RemoteQemuVm(object):
                 constraint_stats(self.device)
                 print("Execution Time: ", synthesis_t_start - self.start_time)
                 print("Synthesis Time: ", synthesis_t_end - synthesis_t_start)
-            sys.exit()
+                sys.exit()
 
         elif ty == BP_AVOID:
             logger.log(f"AVOID POINT HIT: {hex(pc)} : {callstack_str}")
